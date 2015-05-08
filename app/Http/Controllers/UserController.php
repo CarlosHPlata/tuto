@@ -2,6 +2,8 @@
 use App\User;
 use App\UserProfile;
 use Illuminate\Support\Facades\Request;
+use App\Http\Requests\EditUserRequest;
+use App\Http\Requests\CreateUserRequest;
 
 class UserController extends Controller {
 
@@ -56,12 +58,29 @@ class UserController extends Controller {
 		return view('user.indexview', ['users' => $users]);
 	}
 
+	public function getNew(){
+		return view('user.newview');
+	}
+
+	public function postNew(CreateUserRequest $request){
+		
+		$params = Request::all();
+		$user = new User();
+		$user->fill($params);
+
+		$user->save();
+
+		$user->profile()->save(new UserProfile($params));
+
+		return redirect('users/');
+	}
+
 	public function getEdit($id){
 	    $user = User::findOrFail($id);
 	    return view('user.editview', ['user' => $user]);
 	}
 
-	public function postEdit($id){
+	public function postEdit(EditUserRequest $request, $id){
 		$user = User::findOrFail($id);
 		$params = Request::all();
 
@@ -74,19 +93,4 @@ class UserController extends Controller {
 		return redirect('users/');
 	}
 
-	public function getNew(){
-		return view('user.newview');
-	}
-
-	public function postNew(){
-		$params = Request::all();
-
-		$user = new User();
-		$user->fill($params);
-		$user->save();
-
-		$user->profile()->save(new UserProfile($params));
-
-		return redirect('users/');
-	}
 }

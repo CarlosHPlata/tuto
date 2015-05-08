@@ -137,6 +137,11 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 
 		/*
+		 * Laravel Collective Providers...
+		 */
+		'Collective\Html\HtmlServiceProvider',
+
+		/*
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
@@ -192,6 +197,13 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
+		/*
+		* Laravel Collective Aliases ... 
+		*/
+
+		'Form' => 'Collective\Html\FormFacade',
+		'Html' => 'Collective\Html\HtmlFacade',
 
 	],
 
