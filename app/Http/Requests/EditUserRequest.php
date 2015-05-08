@@ -34,7 +34,7 @@ class EditUserRequest extends Request {
 			'first_name' => 'required',
 			'last_name' => 'required',
 			'password' => 'confirmed',
-			'type' => 'required',
+			'type' => 'required|in:user,admin',
 
 			'birthdate' => 'date',
 		];

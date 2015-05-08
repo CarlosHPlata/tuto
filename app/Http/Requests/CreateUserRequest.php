@@ -22,13 +22,7 @@ class CreateUserRequest extends Request {
 	public function rules()
 	{
 		return [
-			'first_name' => 'required',
-			'last_name' => 'required',
-			'email' => 'required|email|unique:users,email',
-			'password' => 'confirmed|required',
-			'type' => 'required',
-
-			'birthdate' => 'date',
+			
 		];
 	}
 
